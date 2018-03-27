@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Image, Text, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  Button,
+  StyleSheet,
+  ActivityIndicator
+} from "react-native";
 
 class PokeView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pokemon: {}
+      pokemon: null
     };
   }
 
@@ -25,6 +32,11 @@ class PokeView extends React.Component {
   render() {
     const { id, handleClick } = this.props;
     const { pokemon } = this.state;
+
+    if (pokemon == null) {
+      return <ActivityIndicator size="large" color="#0000ff" />;
+    }
+
     return (
       <View>
         <Image
