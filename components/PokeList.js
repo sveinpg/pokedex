@@ -1,21 +1,23 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 
 import PokeCell from "./PokeCell";
 
-const PokeList = () => {
+const pokemonIds = Array.from({ length: 150 }, (v, k) => k + 1).map(id => ({
+  id
+}));
+
+const PokeList = ({ handleClick }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "row",
-        flexWrap: "wrap",
-        paddingTop: 30
-      }}
-    >
-      <PokeCell />
-      <PokeCell />
-      <PokeCell />
+    <View>
+      <FlatList
+        numColumns="3"
+        data={pokemonIds}
+        renderItem={({ item }) => (
+          <PokeCell id={item.id} handleClick={handleClick} />
+        )}
+        keyExtractor={(item, index) => item.id}
+      />
     </View>
   );
 };

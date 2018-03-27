@@ -8,22 +8,26 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      showDetails: false
+      showDetails: false,
+      id: 0
     };
   }
 
   render() {
-    const { showDetails } = this.state;
+    const { showDetails, id } = this.state;
 
     return (
       <View style={styles.container}>
-        {showDetails ? <PokeView /> : <PokeList />}
-        <Button
-          onPress={() =>
-            this.setState(prev => ({ showDetails: !prev.showDetails }))
-          }
-          title="Toggle"
-        />
+        {showDetails ? (
+          <PokeView
+            id={id}
+            handleClick={() => this.setState({ showDetails: false })}
+          />
+        ) : (
+          <PokeList
+            handleClick={id => this.setState({ showDetails: true, id })}
+          />
+        )}
       </View>
     );
   }
@@ -31,9 +35,8 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: "center"
   }
 });
