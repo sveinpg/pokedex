@@ -8,28 +8,32 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      showDetails: false,
+      route: "List",
       id: 0
     };
   }
 
   render() {
-    const { showDetails, id } = this.state;
+    const { route, id } = this.state;
 
-    return (
-      <View style={styles.container}>
-        {showDetails ? (
+    if (route === "List") {
+      return (
+        <View style={styles.container}>
+          <PokeList
+            handleClick={id => this.setState({ route: "Details", id })}
+          />
+        </View>
+      );
+    } else if (route === "Details") {
+      return (
+        <View style={styles.container}>
           <PokeView
             id={id}
-            handleClick={() => this.setState({ showDetails: false })}
+            handleClick={() => this.setState({ route: "List" })}
           />
-        ) : (
-          <PokeList
-            handleClick={id => this.setState({ showDetails: true, id })}
-          />
-        )}
-      </View>
-    );
+        </View>
+      );
+    }
   }
 }
 
