@@ -3,9 +3,7 @@ import { View, Text, FlatList } from "react-native";
 
 import PokeCell from "./PokeCell";
 
-const pokemonIds = Array.from({ length: 150 }, (v, k) => k + 1).map(id => ({
-  id
-}));
+const pokemonIds = Array.from({ length: 150 }, (v, k) => k + 1);
 
 const PokeList = ({ handleClick }) => {
   return (
@@ -14,9 +12,9 @@ const PokeList = ({ handleClick }) => {
         numColumns="3"
         data={pokemonIds}
         renderItem={({ item }) => (
-          <PokeCell id={item.id} handleClick={handleClick} />
+          <PokeCell id={item} handleClick={handleClick} />
         )}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => item}
       />
     </View>
   );

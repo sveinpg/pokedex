@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import PokeList from "./components/PokeList";
-import PokeView from "./components/PokeView";
+import PokeDetails from "./components/PokeDetails";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     } else if (route === "Details") {
       return (
         <View style={styles.container}>
-          <PokeView
+          <PokeDetails
             id={id}
             handleClick={() => this.setState({ route: "List" })}
           />
